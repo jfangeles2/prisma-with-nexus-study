@@ -19,69 +19,6 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  CompanyCreateInput: { // input type
-    description: string; // String!
-    name: string; // String!
-    symbol: string; // String!
-  }
-  CompanyWhereInput: { // input type
-    AND?: NexusGenInputs['CompanyWhereInput'][] | null; // [CompanyWhereInput!]
-    description?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    NOT?: NexusGenInputs['CompanyWhereInput'][] | null; // [CompanyWhereInput!]
-    OR?: NexusGenInputs['CompanyWhereInput'][] | null; // [CompanyWhereInput!]
-    symbol?: NexusGenInputs['StringFilter'] | null; // StringFilter
-  }
-  CompanyWhereUniqueInput: { // input type
-    id?: number | null; // Int
-  }
-  IntFilter: { // input type
-    equals?: number | null; // Int
-    gt?: number | null; // Int
-    gte?: number | null; // Int
-    in?: number[] | null; // [Int!]
-    lt?: number | null; // Int
-    lte?: number | null; // Int
-    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
-    notIn?: number[] | null; // [Int!]
-  }
-  NestedIntFilter: { // input type
-    equals?: number | null; // Int
-    gt?: number | null; // Int
-    gte?: number | null; // Int
-    in?: number[] | null; // [Int!]
-    lt?: number | null; // Int
-    lte?: number | null; // Int
-    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
-    notIn?: number[] | null; // [Int!]
-  }
-  NestedStringFilter: { // input type
-    contains?: string | null; // String
-    endsWith?: string | null; // String
-    equals?: string | null; // String
-    gt?: string | null; // String
-    gte?: string | null; // String
-    in?: string[] | null; // [String!]
-    lt?: string | null; // String
-    lte?: string | null; // String
-    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
-    notIn?: string[] | null; // [String!]
-    startsWith?: string | null; // String
-  }
-  StringFilter: { // input type
-    contains?: string | null; // String
-    endsWith?: string | null; // String
-    equals?: string | null; // String
-    gt?: string | null; // String
-    gte?: string | null; // String
-    in?: string[] | null; // [String!]
-    lt?: string | null; // String
-    lte?: string | null; // String
-    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
-    notIn?: string[] | null; // [String!]
-    startsWith?: string | null; // String
-  }
 }
 
 export interface NexusGenEnums {
@@ -96,24 +33,11 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenRootTypes {
-  Company: { // root type
-    description: string; // String!
-    id: number; // Int!
-    name: string; // String!
-    symbol: string; // String!
-  }
   Mutation: {};
   Query: {};
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  CompanyCreateInput: NexusGenInputs['CompanyCreateInput'];
-  CompanyWhereInput: NexusGenInputs['CompanyWhereInput'];
-  CompanyWhereUniqueInput: NexusGenInputs['CompanyWhereUniqueInput'];
-  IntFilter: NexusGenInputs['IntFilter'];
-  NestedIntFilter: NexusGenInputs['NestedIntFilter'];
-  NestedStringFilter: NexusGenInputs['NestedStringFilter'];
-  StringFilter: NexusGenInputs['StringFilter'];
   String: NexusGenScalars['String'];
   Int: NexusGenScalars['Int'];
   Float: NexusGenScalars['Float'];
@@ -122,39 +46,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
-  Company: { // field return type
-    description: string; // String!
-    id: number; // Int!
-    name: string; // String!
-    symbol: string; // String!
-  }
-  Mutation: { // field return type
-    createOneCompany: NexusGenRootTypes['Company']; // Company!
-  }
-  Query: { // field return type
-    companies: NexusGenRootTypes['Company'][]; // [Company!]!
-    company: NexusGenRootTypes['Company'] | null; // Company
-  }
 }
 
 export interface NexusGenArgTypes {
-  Mutation: {
-    createOneCompany: { // args
-      data: NexusGenInputs['CompanyCreateInput']; // CompanyCreateInput!
-    }
-  }
-  Query: {
-    companies: { // args
-      after?: NexusGenInputs['CompanyWhereUniqueInput'] | null; // CompanyWhereUniqueInput
-      before?: NexusGenInputs['CompanyWhereUniqueInput'] | null; // CompanyWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-      where?: NexusGenInputs['CompanyWhereInput'] | null; // CompanyWhereInput
-    }
-    company: { // args
-      where: NexusGenInputs['CompanyWhereUniqueInput']; // CompanyWhereUniqueInput!
-    }
-  }
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
@@ -162,9 +56,9 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Company" | "Mutation" | "Query";
+export type NexusGenObjectNames = "Mutation" | "Post" | "Query" | "User";
 
-export type NexusGenInputNames = "CompanyCreateInput" | "CompanyWhereInput" | "CompanyWhereUniqueInput" | "IntFilter" | "NestedIntFilter" | "NestedStringFilter" | "StringFilter";
+export type NexusGenInputNames = never;
 
 export type NexusGenEnumNames = never;
 

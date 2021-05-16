@@ -4,8 +4,7 @@ import { createContext } from "src/context";
 
 const server = new ApolloServer({
   schema,
-  context: createContext,
-  tracing: process.env.NODE_ENV === "development",
+  context: createContext
 });
 const handler = server.createHandler({ path: "/api/graphql" });
 

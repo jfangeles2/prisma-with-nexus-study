@@ -2,33 +2,60 @@ import { makeSchema, queryType, objectType, mutationType } from "@nexus/schema";
 import { nexusSchemaPrisma } from "nexus-plugin-prisma/schema";
 import path from "path";
 
-const Company = objectType({
-  name: "Company",
+const User = objectType({
+  name: "User",
   definition(t) {
+    // t.model.id() becuase it is already defined in prisma/schema.prisma which should be created first
     t.model.id();
-    t.model.symbol();
-    t.model.name();
-    t.model.description();
+    t.model.username();
+  },
+});
+
+const Post = objectType({
+  name: "Post",
+  definition(t) {
+    // t.model.id() becuase it is already defined in prisma/schema.prisma which should be created first
+    t.model.id();
+    t.model.title();
+    t.model.post();
+    t.model.user();
+    t.model.userId();
   },
 });
 
 const Query = queryType({
   definition(t) {
-    t.crud.company({
-      resolve: (_root, args, ctx) => {
-        return ctx.prisma.company.findOne({ where: { id: args.where.id } });
+    t.crud.User({
+      resolve: (parent, args, ctx) => {
+        return ctx.prisma.user.findOne({ where: { id: args.where.id } });
       },
     });
 
-    t.crud.companies({ pagination: true, filtering: true });
+    t.crud.users({
+      resolve: (parent, args, context) => {
+        return context.prisma.user.findMany();
+      }
+    });
 
-    // t.field("company", {
-    //   type: Company,
+    t.crud.post({
+      resolve: (parent, args, ctx) => {
+        return ctx.prisma.post.findOne({ where: { userId: args.where.userId } });
+      },
+    });
+
+    t.crud.posts({
+      resolve: (parent, args, context) => {
+        return context.prisma.posts.findMany();
+      }
+    });
+    // THE LONG WAY
+    // t.field("queryName", {
+    //   type: ReturnType,
     //   nullable: true,
     //   args: {
     //     id: idArg(),
     //   },
-    //   resolve: (_root, { id }, ctx) => {
+    //   resolve: (parent, { id }, ctx) => {
     //     return ctx.prisma.company.findOne({ where: { id: Number(id) } });
     //   },
     // });
@@ -37,12 +64,13 @@ const Query = queryType({
 
 const Mutation = mutationType({
   definition(t) {
-    t.crud.createOneCompany();
+    t.crud.createOneUser();
+    t.crud.createOnePost();
   },
 });
 
 export const schema = makeSchema({
-  types: { Query, Company, Mutation },
+  types: { Query, User, Post, Mutation },
   // CRUD won't work without this option!!!
   plugins: [nexusSchemaPrisma({ experimentalCRUD: true })],
   outputs: {
